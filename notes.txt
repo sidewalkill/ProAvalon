@@ -1,0 +1,20 @@
+Go into:
+
+https://github.com/vck3000/ProAvalon/blob/master/routes/forum.js
+
+Here's where you'll find deletion, which Pro does through 3 convoluted if statements.
+413 to 454 is like deleting posts for mods?
+Put a "notify" after these lines:
+419 - posts
+431 - comments
+444 - replies
+
+Statements like 
+
+comment.oldText = comment.text;
+
+call the DB
+
+You can get the comment by calling this string, to put in the notify.
+
+Check how he does notify for warnings, bans, and avatar requests.
