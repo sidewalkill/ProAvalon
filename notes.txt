@@ -18,3 +18,32 @@ call the DB
 You can get the comment by calling this string, to put in the notify.
 
 Check how he does notify for warnings, bans, and avatar requests.
+
+Makes a mongoose DB model in: https://github.com/sidewalkill/ProAvalon/tree/master/models
+
+Copy the format for the ip ban or avatar request one, probably something like:
+
+var mongoose = require("mongoose");
+
+//SCHEMA SETUP
+var forumDeletionSchema = new mongoose.Schema({
+	type: String, //post, comment, reply?
+  
+	modWhoBanned: {
+		id: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "User"
+		},
+		username: String
+	},
+
+	whenDeleted: Date,
+
+	usernamesAssociated: [String]
+});
+
+//compile schema into a model
+var forumDeletion = mongoose.model("ForumDeletion", forumDeletionSchema);
+
+module.exports = forumDeletionSchema;
+
